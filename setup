@@ -1,0 +1,8 @@
+#!/bin/bash
+installdir=~/.vim
+
+echo "[*] creating vim configuration at $installdir"
+mkdir -p "$installdir"
+cp -R src/* "$installdir"
+
+echo "[*] done"
