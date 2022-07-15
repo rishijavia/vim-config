@@ -1,6 +1,12 @@
 #!/bin/bash
 installdir=~/.vim
 
+# Install fzf
+echo "[*] installing fzf"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+echo "[*] done installing fzf"
+
 echo "[*] creating vim configuration at $installdir"
 mkdir -p "$installdir"
 cp -R src/* "$installdir"

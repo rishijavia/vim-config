@@ -1,17 +1,17 @@
 """ load packages -
 call plug#begin('~/.vim/plugged')
-  Plug 'sweitzma/vim-colors-meh'                        " minimal colorscheme
-  Plug 'scrooloose/nerdtree'                            " file system explorer for the Vim editor
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }   " fzf bindings and functions
+  Plug 'sweitzma/vim-colors-meh'                                      " minimal colorscheme
+  Plug 'scrooloose/nerdtree'                                          " file system explorer for the Vim editor
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fzf bindings and functions
   Plug 'junegunn/fzf.vim'
-  Plug 'itchyny/lightline.vim'                          " better status bar
-  Plug 'mg979/vim-visual-multi', {'branch': 'master'}   " in analogy with visual-block
-  Plug 'sheerun/vim-polyglot'                           " lazy loading many syntax types
-  Plug 'dense-analysis/ale'                             " syntax checking and semantic errors
-  Plug 'airblade/vim-gitgutter'                         " shows a git diff in the sign column
-  Plug 'tpope/vim-fugitive'                             " git funtionality
-  Plug 'jiangmiao/auto-pairs'                           " automatically complete pairs
-  Plug 'takac/vim-hardtime'                             " break slow habits in Vim
+  Plug 'itchyny/lightline.vim'                                        " better status bar
+  Plug 'mg979/vim-visual-multi'                                       " in analogy with visual-block
+  Plug 'sheerun/vim-polyglot'                                         " lazy loading many syntax types
+  Plug 'dense-analysis/ale'                                           " syntax checking and semantic errors
+  Plug 'airblade/vim-gitgutter'                                       " shows a git diff in the sign column
+  Plug 'tpope/vim-fugitive'                                           " git funtionality
+  Plug 'jiangmiao/auto-pairs'                                         " automatically complete pairs
+  Plug 'takac/vim-hardtime'                                           " break slow habits in Vim
 call plug#end()
 
 """ [plugin] Ale                                        " Let ale run linters
