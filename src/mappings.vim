@@ -48,6 +48,34 @@ noremap <Leader>w :call TrimWhitespace()<CR>
 " Open NERDTree with ,n
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 
+""" Ruby
+" Auto format on shift enter
+if !exists( "*RubyEndToken" )
+
+  function RubyEndToken()
+    let current_line = getline( '.' )
+    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+    let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
+      let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+
+      if match(current_line, braces_at_end) >= 0
+        return "\<CR>}\<C-O>O"
+      elseif match(current_line, stuff_without_do) >= 0
+        return "\<CR>end\<C-O>O"
+      elseif match(current_line, with_do) >= 0
+        return "\<CR>end\<C-O>O"
+      else
+        return "\<CR>"
+      endif
+    endfunction
+
+endif
+
+" Fix shift enter: Open iTerm2 preferences → profile → keys → add more key + → 
+" press Shift Enter in field Keyboard Shortcut → Action: Send Text with “vim”
+" Special Char → Copy \n\nend\x1B-cc
+imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
+
 """ buffer navigation
 " nnoremap <Leader>r :bnext<CR>
 " nnoremap <Leader>e :bprevious<CR>

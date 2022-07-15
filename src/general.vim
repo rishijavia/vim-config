@@ -16,7 +16,7 @@ set updatetime=100                " More frequent updates for vim-gitgutter to d
 set history=1000
 set undolevels=1000
 
-""" spaces, tabs, line sizing
+""" spaces, tabs, line sizing, completion
 filetype plugin on                " load plugins based on file type
 filetype indent on                " load indent settings based on file type
 set shiftwidth=2                  " number of spaces to use for indenting
@@ -26,6 +26,7 @@ set expandtab                     " convert tabs into spaces
 set autoindent                    " copy indent from previous line
 set smartindent                   " Automatically inserts indentation in some cases
 set cindent                       " Like smartindent, but stricter and more customisable
+set omnifunc=syntaxcomplete#Complete "Enable omni completion
 " set textwidth=120
 " set colorcolumn=100
 
