@@ -12,6 +12,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'                                           " git funtionality
   Plug 'jiangmiao/auto-pairs'                                         " automatically complete pairs
   Plug 'takac/vim-hardtime'                                           " break slow habits in Vim
+  Plug 'vim-ruby/vim-ruby'                                            " ruby helpers
+  Plug 'tpope/vim-rails'                                               " rails helpers
 call plug#end()
 
 """ [plugin] Ale                                        " Let ale run linters
