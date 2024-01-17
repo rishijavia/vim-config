@@ -13,7 +13,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'                                         " automatically complete pairs
   Plug 'takac/vim-hardtime'                                           " break slow habits in Vim
   Plug 'vim-ruby/vim-ruby'                                            " ruby helpers
-  Plug 'tpope/vim-rails'                                               " rails helpers
+  Plug 'tpope/vim-rails'                                              " rails helpers
+  Plug 'valloric/youcompleteme'                                       " auto-complete
 call plug#end()
 
 """ [plugin] Ale                                        " Let ale run linters
@@ -55,3 +56,8 @@ let g:lightline.active.right     = [['lineinfo'], ['percent'],['fileformat', 'fi
 let g:hardtime_default_on = 1
 let g:hardtime_maxcount = 4
 let g:hardtime_timeout = 1000
+
+""" [plugin] vim-ruby
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
