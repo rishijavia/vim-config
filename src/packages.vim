@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 """ [plugin] Ale                                        " Let ale run linters
+let b:ale_fixers = {'terraform': ['terraform']}
 let g:ale_linters = {
   \'ruby': ['ruby', 'rubocop'],
   \'jsx': ['eslint'],

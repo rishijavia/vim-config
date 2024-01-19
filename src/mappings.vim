@@ -9,8 +9,11 @@ let mapleader = ","
 " nnoremap k gk
 
 """ Modify visual yank to write result to file
-vnoremap y :yank<CR>gv:w! ~/.vim/.copy<CR>
-noremap <C-p> :!cat ~/.vim/.copy<CR>
+""" vnoremap y :yank<CR>gv:w! ~/.vim/.copy<CR>
+""" noremap <C-p> :!cat ~/.vim/.copy<CR>
+
+""" MacOS copy paste
+vnoremap <C-c> :w !pbcopy<CR><CR>
 
 """ window navigation
 nnoremap <C-h> <C-w><C-h>
