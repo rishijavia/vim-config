@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-ruby/vim-ruby'                                            " ruby helpers
   Plug 'tpope/vim-rails'                                              " rails helpers
   Plug 'valloric/youcompleteme'                                       " auto-complete
+  Plug 'github/copilot.vim'                                           " github copilot
 call plug#end()
 
 """ [plugin] Ale                                        " Let ale run linters
