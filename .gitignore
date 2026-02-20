@@ -10,3 +10,9 @@ vim/view/
 
 # OS cruft
 .DS_Store
+
+# Vim swap files
+*.swp
+*.swo
+*.swx
+*.sw?

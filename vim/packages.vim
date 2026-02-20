@@ -12,6 +12,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'                                           " syntax checking and semantic errors
   Plug 'airblade/vim-gitgutter'                                       " shows a git diff in the sign column
   Plug 'tpope/vim-fugitive'                                           " git funtionality
+  Plug 'tpope/vim-commentary'                                         " comment/uncomment helpers
+  Plug 'farmergreg/vim-lastplace'                                     " reopen files at last cursor position
+  Plug 'christoomey/vim-tmux-navigator'                               " seamless vim/tmux pane navigation
   Plug 'jiangmiao/auto-pairs'                                         " automatically complete pairs
   Plug 'takac/vim-hardtime'                                           " break slow habits in Vim
   Plug 'vim-ruby/vim-ruby'                                            " ruby helpers
