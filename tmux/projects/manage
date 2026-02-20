@@ -1,0 +1,7 @@
+PROJECT_NAME="manage"
+PROJECT_DIR="$HOME/co/manage"
+
+WINDOWS=(
+  "editor|$PROJECT_DIR|main-vertical|vi .|h:codex|v:lazygit"
+  "shell|$PROJECT_DIR|even-horizontal|git pull --rebase origin master"
+)

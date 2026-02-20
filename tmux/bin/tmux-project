@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECTS_DIR="${TMUX_PROJECTS_DIR:-$HOME/.tmux/projects}"
+
+pick_project() {
+  local project
+  shopt -s nullglob
+  local files=("$PROJECTS_DIR"/*)
+  shopt -u nullglob
+  if [ ${#files[@]} -eq 0 ]; then
+    echo "No project files found in $PROJECTS_DIR" >&2
+    exit 1
+  fi
+
+  if command -v fzf >/dev/null 2>&1; then
+    project=$(for f in "${files[@]}"; do basename "$f"; done | sort | fzf --prompt='Project> ')
+  else
+    echo "Select a project:" >&2
+    select project in $(for f in "${files[@]}"; do basename "$f"; done | sort); do
+      break
+    done
+  fi
+
+  echo "$project"
+}
+
+project="${1:-}"
+if [ -z "$project" ]; then
+  if [ -t 0 ]; then
+    project="$(pick_project)"
+  else
+    tmux command-prompt -p "Project:" "run-shell '~/.tmux/bin/tmux-project %1'"
+    exit 0
+  fi
+fi
+
+if [ -z "$project" ]; then
+  echo "No project selected" >&2
+  exit 1
+fi
+
+project_file="$PROJECTS_DIR/$project"
+if [ ! -f "$project_file" ]; then
+  if [ -f "$project" ]; then
+    project_file="$project"
+  else
+    echo "Project file not found: $project" >&2
+    exit 1
+  fi
+fi
+
+# shellcheck source=/dev/null
+source "$project_file"
+
+PROJECT_NAME="${PROJECT_NAME:-$(basename "$project_file")}"
+PROJECT_DIR="${PROJECT_DIR:-$HOME}"
+WINDOWS=("${WINDOWS[@]:-}")
+
+if [ ! -d "$PROJECT_DIR" ]; then
+  PROJECT_DIR="$HOME"
+fi
+
+session="$PROJECT_NAME"
+
+if tmux has-session -t "$session" 2>/dev/null; then
+  if [ -n "${TMUX:-}" ]; then
+    tmux switch-client -t "$session"
+  else
+    tmux attach -t "$session"
+  fi
+  exit 0
+fi
+
+tmux new-session -d -s "$session" -c "$PROJECT_DIR"
+
+if [ ${#WINDOWS[@]} -eq 0 ]; then
+  WINDOWS=("shell|$PROJECT_DIR||")
+fi
+
+window_index=1
+for win in "${WINDOWS[@]}"; do
+  IFS='|' read -r -a parts <<< "$win"
+  name="${parts[0]:-shell}"
+  dir="${parts[1]:-$PROJECT_DIR}"
+  layout="${parts[2]:-}"
+  commands=("${parts[@]:3}")
+
+  if [ "$window_index" -eq 1 ]; then
+    tmux rename-window -t "$session:$window_index" "$name"
+    tmux send-keys -t "$session:$window_index" "cd \"$dir\"" C-m
+  else
+    tmux new-window -t "$session" -n "$name" -c "$dir"
+  fi
+
+  target="$session:$window_index"
+
+  if [ ${#commands[@]} -gt 0 ]; then
+    first_cmd="${commands[0]}"
+    if [ -n "$first_cmd" ]; then
+      tmux send-keys -t "$target" "$first_cmd" C-m
+    fi
+
+    for cmd in "${commands[@]:1}"; do
+      split_flag="-h"
+      if [[ "$cmd" == v:* ]]; then
+        split_flag="-v"
+        cmd="${cmd#v:}"
+      elif [[ "$cmd" == h:* ]]; then
+        split_flag="-h"
+        cmd="${cmd#h:}"
+      fi
+
+      if [ -n "$cmd" ]; then
+        pane_id=$(tmux split-window $split_flag -t "$target" -c "$dir" -P -F '#{pane_id}')
+        tmux send-keys -t "$pane_id" "$cmd" C-m
+      else
+        tmux split-window $split_flag -t "$target" -c "$dir"
+      fi
+    done
+  fi
+
+  if [ -n "$layout" ]; then
+    tmux select-layout -t "$target" "$layout"
+  fi
+
+  window_index=$((window_index + 1))
+done
+
+tmux select-window -t "$session:1"
+if [ -n "${TMUX:-}" ]; then
+  tmux switch-client -t "$session"
+else
+  tmux attach -t "$session"
+fi

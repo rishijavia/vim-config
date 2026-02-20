@@ -1,0 +1,12 @@
+# Vim runtime artifacts
+vim/plugged/
+vim/autoload/plug.vim
+vim/.netrwhist
+vim/undo/
+vim/sessions/
+vim/swap/
+vim/backup/
+vim/view/
+
+# OS cruft
+.DS_Store

@@ -1,0 +1,14 @@
+# Example project for tmux-project
+#
+# Format: name|dir|layout|cmd1|cmd2|...
+# - layout is optional (e.g., main-vertical, main-horizontal, even-vertical, even-horizontal)
+# - cmdN can be prefixed with v: or h: to control split direction for that pane
+
+PROJECT_NAME="example"
+PROJECT_DIR="$HOME/path/to/project"
+
+WINDOWS=(
+  "editor|$PROJECT_DIR|main-vertical|vim"
+  "server|$PROJECT_DIR|even-horizontal|h:bin/dev|h:yarn dev"
+  "shell|$PROJECT_DIR||"
+)
