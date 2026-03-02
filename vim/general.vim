@@ -13,7 +13,15 @@ set nospell                       " turn off spelling by default
 set cursorline                    " highlight current line
 set showmatch                     " highlight matching [{()}]
 set ar                            " Set autoread
-set clipboard=unnamedplus         " use system clipboard for yanks/puts
+" Use a clipboard mode that matches the editor/runtime capabilities.
+" In terminal Vim, `unnamed` is more reliable than `unnamedplus`.
+if has('clipboard')
+  if has('nvim')
+    set clipboard=unnamedplus     " use system clipboard for yanks/puts
+  else
+    set clipboard=unnamed         " use primary clipboard register in Vim
+  endif
+endif
 set updatetime=100                " More frequent updates for vim-gitgutter to display changes for
 set history=1000
 set undolevels=1000

@@ -1,0 +1,8 @@
+PROJECT_NAME="sDSM"
+PROJECT_DIR="$HOME/co/sDSM"
+
+WINDOWS=(
+  "editor|$PROJECT_DIR|main-vertical|vi .|h:codex|v:lazygit"
+  "shell|$PROJECT_DIR|even-horizontal|docker compose --profile dev down && docker system prune -f && docker network create local_network && docker compose --profile dev up --build --watch"
+  "shell|$PROJECT_DIR|even-horizontal|"
+)

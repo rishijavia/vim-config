@@ -14,6 +14,11 @@ let mapleader = ","
 
 """ MacOS copy paste
 vnoremap <C-c> :w !pbcopy<CR><CR>
+if has('macunix') && executable('pbcopy') && executable('pbpaste')
+  " Explicit system clipboard shortcuts when terminal clipboard is flaky.
+  vnoremap <Leader>y :w !pbcopy<CR><CR>
+  nnoremap <Leader>p :put =system('pbpaste')<CR>
+endif
 
 """ window navigation
 nnoremap <C-h> <C-w><C-h>
