@@ -12,6 +12,10 @@ let mapleader = ","
 """ vnoremap y :yank<CR>gv:w! ~/.vim/.copy<CR>
 """ noremap <C-p> :!cat ~/.vim/.copy<CR>
 
+""" OSC52 clipboard (SSH)
+vnoremap <Leader>y :<C-u>OSCYankVisual<CR>
+
+
 """ MacOS copy paste
 vnoremap <C-c> :w !pbcopy<CR><CR>
 if has('macunix') && executable('pbcopy') && executable('pbpaste')

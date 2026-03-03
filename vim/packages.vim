@@ -1,17 +1,18 @@
 """ load packages -
 call plug#begin('~/.vim/plugged')
   Plug 'sweitzma/vim-colors-meh'
-  Plug 'ghifarit53/tokyonight-vim'                                 " tokyonight colorscheme                                      " minimal colorscheme
+  Plug 'ghifarit53/tokyonight-vim'                                    " tokyonight colorschem
   Plug 'preservim/nerdtree'                                           " file system explorer for the Vim editor
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fzf bindings and functions
   Plug 'junegunn/fzf.vim'
   Plug 'itchyny/lightline.vim'                                        " better status bar
   Plug 'mg979/vim-visual-multi'                                       " in analogy with visual-block
   Plug 'sheerun/vim-polyglot'                                         " lazy loading many syntax types
-  Plug 'derekwyatt/vim-scala'                                        " better Scala syntax/highlighting
+  Plug 'derekwyatt/vim-scala'                                         " better Scala syntax/highlighting
   Plug 'dense-analysis/ale'                                           " syntax checking and semantic errors
   Plug 'airblade/vim-gitgutter'                                       " shows a git diff in the sign column
   Plug 'tpope/vim-fugitive'                                           " git funtionality
+  Plug 'ojroques/vim-oscyank'                                         " OSC52 clipboard over SSH                                           
   Plug 'tpope/vim-commentary'                                         " comment/uncomment helpers
   Plug 'farmergreg/vim-lastplace'                                     " reopen files at last cursor position
   Plug 'christoomey/vim-tmux-navigator'                               " seamless vim/tmux pane navigation
@@ -79,3 +80,4 @@ augroup vim_ruby_settings
   autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
   autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 augroup END
+
