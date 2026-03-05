@@ -42,9 +42,8 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Esc>O"
 
 """ fzf and window splitting
-noremap <C-p> :FZF<CR>
-noremap <Leader>f :call fzf#run({'sink': 'edit',   'options': '-i', 'down': 10})<CR>
-" noremap <Leader>v :call fzf#run({'sink': 'vsplit', 'options': '-i', 'down': 10})<CR>
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>v :Files<CR>:vsplit<CR>
 " noremap <Leader>y :call fzf#run({'sink': 'vsplit', 'options': '-i -q ' . expand(ToggleRSpec()), 'down': 10})<CR>
 
 """ no more trailing whitespace

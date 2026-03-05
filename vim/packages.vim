@@ -44,12 +44,6 @@ augroup nerdtree_setup
   autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 augroup END
 
-augroup nerdtree_sync
-  autocmd!
-  " Keep NERDTree focused on the current buffer's file when tree is open.
-  autocmd BufEnter * if exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1 | silent! NERDTreeFind | wincmd p | endif
-augroup END
-
 """ [plugin] Lightline
 set laststatus=2
 set showtabline=2
